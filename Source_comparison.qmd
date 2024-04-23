@@ -19,7 +19,7 @@ library(tidyverse)
 #| message: false
 #| warning: false
 # Import citation files from folder
-citation_files <- list.files(path = "RIS_data", pattern = "\\.ris", full.names = TRUE, recursive = TRUE)
+citation_files <- list.files(path = "RIS_data", pattern = "\\.ris", full.names = TRUE)
 
 # Print list of citation files to console
 citation_files
@@ -30,57 +30,30 @@ file_path <- "RIS_data/"
 # Create a tibble that contains metadata about the citation files
 metadata_tbl <- tibble::tribble(
   ~files,            ~cite_sources,   ~cite_labels, 
-   "benchmarks/Applegate 1984.ris", "benchmark", "benchmark",               
- "benchmarks/Austin et al 2013.ris", "benchmark", "benchmark",            
- "benchmarks/Austin et al 2014.ris", "benchmark", "benchmark",            
- "benchmarks/Carpio et al 2024.ris", "benchmark", "benchmark",            
- "benchmarks/Dandy et al 2011.ris", "benchmark", "benchmark",             
- "benchmarks/Dandy et al 2012.ris", "benchmark", "benchmark",             
- "benchmarks/Dandy et al 2014.ris", "benchmark", "benchmark",             
- "benchmarks/Davies & White 2012.ris", "benchmark", "benchmark",          
- "benchmarks/Diekert et al 2016.ris", "benchmark", "benchmark",           
-"benchmarks/Gamborg et al 2020.ris", "benchmark", "benchmark",           
-"benchmarks/Hare et al 2021.ris", "benchmark", "benchmark",              
-"benchmarks/Heberlein et al 2009 (Scopus).ris", "benchmark", "benchmark",
-"benchmarks/Holland et al 2017.ris", "benchmark", "benchmark",           
-"benchmarks/Kilpatrick et al 2007.ris"  , "benchmark", "benchmark",      
-"benchmarks/MacMillan & Leitch 2008.ris", "benchmark", "benchmark",      
-"benchmarks/McCance et al 2015.ris", "benchmark", "benchmark",           
-"benchmarks/Needham & Vaske 2008.ris", "benchmark", "benchmark",         
-"benchmarks/Nemec et al 2023.ris", "benchmark", "benchmark",             
-"benchmarks/Shrestha et al 2012.ris"  , "benchmark", "benchmark",        
-"benchmarks/Stinchcomb et al 2022.ris", "benchmark", "benchmark",        
-"benchmarks/Urbanek et al 2015.ris" , "benchmark", "benchmark",          
-"benchmarks/Valente et al 2020.ris" , "benchmark", "benchmark",          
-"benchmarks/van der Wal et al 2014.ris" , "benchmark", "benchmark",      
-"benchmarks/White et al 2003.ris"  , "benchmark", "benchmark",           
-"benchmarks/Whitefield et al 2021.ris" , "benchmark", "benchmark",       
-"benchmarks/Widen et al 2023.ris"  , "benchmark", "benchmark",
-  
-  
-  "scopus_all_22.04.24.ris", "scopus",     "search",    
-  "WoS_1 to 1,000.ris",    "WoS",       "search",    
-  "WoS_1,001 to 2,000.ris",    "WoS",       "search",    
-  "WoS_10,001 to 11,000.ris",    "WoS",       "search",     
-  "WoS_11,001 to 12,000.ris",    "WoS",       "search",    
-  "WoS_12,001 to 13,000.ris",    "WoS",       "search",    
-  "WoS_13,001 to 14,000.ris",    "WoS",       "search",    
-  "WoS_14,001 to 15,000.ris",    "WoS",       "search",  
-  "WoS_15,001 to 16,000.ris",    "WoS",       "search",    
-  "WoS_16,001 to 17,000.ris",    "WoS",       "search",
-  "WoS_17,001 to 18,000.ris",    "WoS",       "search",
-  "WoS_18,001 to 19,000.ris",    "WoS",       "search",
-  "WoS_19,001 to 20,000.ris",    "WoS",       "search",
-  "WoS_2,001 to 3,000.ris",    "WoS",       "search",
-  "WoS_20,001 to 21,000.ris",    "WoS",       "search",
-  "WoS_21,001 to 21,858.ris",    "WoS",       "search",
-  "WoS_3,001 to 4,000.ris",    "WoS",       "search",
-  "WoS_4,001 to 5,000.ris",    "WoS",       "search",
-  "WoS_5,001 to 6,000.ris",    "WoS",       "search",
-  "WoS_6,001 to 7,000.ris",    "WoS",       "search",
-  "WoS_7,001 to 8,000.ris",    "WoS",       "search",
-  "WoS_8,001 to 9,000.ris",    "WoS",       "search",
-  "WoS_9,001 to 10,000.ris",    "WoS",       "search"
+"benchmarks_combined.ris", "benchmarks", "benchmarks",
+"scopus_all 11511.ris","scopus" ,"search",
+"WoS 1-1000.ris","wos","search",
+"WoS 10001-11000.ris","wos","search",
+"WoS 1001-2000.ris","wos","search",
+"WoS 11001-12000.ris","wos","search",
+"WoS 12001-13000.ris","wos","search",
+"WoS 13001-14000.ris","wos","search",
+"WoS 14001-15000.ris","wos","search",
+"WoS 15001-16000.ris","wos","search",
+"WoS 16001-17000.ris","wos","search",
+"WoS 17001-18000.ris","wos","search",
+"WoS 18001-19000.ris","wos","search",
+"WoS 19001-20000.ris","wos","search",
+"WoS 20001-21000.ris","wos","search",
+"WoS 2001-3000.ris","wos","search",
+"WoS 21001-21857.ris","wos","search",
+"WoS 3001-4000.ris","wos","search",
+"WoS 4001-5000.ris","wos","search",
+"WoS 5001-6000.ris","wos","search",
+"WoS 6001-7000.ris","wos","search",
+"WoS 7001-8000.ris","wos","search",
+"WoS 8001-9000.ris","wos","search"
+
 ) %>% 
 # Append the file path to each file name in the 'files' column
 dplyr::mutate(files = paste0(file_path, files))
@@ -122,6 +95,6 @@ plot_source_overlap_upset(source_comparison, decreasing = c(TRUE, TRUE))
 ```{r}
 
 unique_citations |> 
-  dplyr::filter(stringr::str_detect(cite_label, "benchmark"))  |> 
+  dplyr::filter(stringr::str_detect(cite_label, "benchmarks"))  |> 
   record_level_table(return = "DT")
 ```
